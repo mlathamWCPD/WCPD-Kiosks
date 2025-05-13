@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fullscreen Slideshow Rotator</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: black;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #instructions h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+
+    #instructions p {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .blackout {
+      background: black !important;
+      color: black !important;
+    }
+  </style>
+  <script>
+    const urls = [
+      "https://www.solrenview.com/srvp/FSC/SRV/main.php?siteId=5550",
+      "https://www.solrenview.com/srvp/FSC/SRV/main.php?siteId=5550#tabs-1",
+      "https://www.warrencountyparks.com/events/",
+      "https://www.warrencountyparks.com/hidden-page-example/events/",
+      "https://www.warrencountyparks.com/hidden-page-example/golf-course-announcements-1/",
+      "https://www.warrencountyparks.com/hidden-page-example/golf-course-announcements-2/",
+      "https://www.warrencountyparks.com/hidden-page-example/armco-park/",
+      "https://www.warrencountyparks.com/hidden-page-example/thank-you-duke-energy/"
+    ];
+
+    let current = 0;
+    let popup = null;
+    let rotationStarted = false;
+
+    function rotate() {
+      if (popup && !popup.closed) {
+        popup.close();
+        popup = null;
+      }
+
+      setTimeout(() => {
+        popup = window.open(
+          urls[current],
+          "_blank",
+          "toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=yes,fullscreen=yes"
+        );
+
+        if (!popup) {
+          alert("Please allow popups for this page.");
+          return;
+        }
+
+        popup.moveTo(0, 0);
+        popup.resizeTo(screen.availWidth, screen.availHeight);
+
+        current = (current + 1) % urls.length;
+      }, 200);
+    }
+
+    function startRotation() {
+      if (rotationStarted) return;
+      rotationStarted = true;
+
+      document.getElementById("instructions").classList.add("hidden");
+      document.body.classList.add("blackout");
+
+      rotate();
+      setInterval(rotate, 10000); // Rotate every 10 seconds
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.altKey && e.key.toLowerCase() === "r") {
+        startRotation();
+      }
+    });
+  </script>
+</head>
+<body>
+  <div id="instructions">
+    <h1>Press <strong>Alt + R</strong> to start the slide show</h1>
+    <p>Press Alt + F4 to exit the slideshow</p>
+  </div>
+</body>
+</html>
