@@ -1,0 +1,36 @@
+{
+  "autoStart": true,
+  "reload": true,
+  "websites": [
+    {
+      "url": "https://www.solrenview.com/srvp/FSC/SRV/main.php?siteId=5550#tabs-1",
+      "duration": 5,
+      "refresh": true
+    },
+    {
+      "url": "https://www.warrencountyparks.com/events/",
+      "duration": 5,
+      "refresh": true
+    },
+    {
+      "url": "https://www.warrencountyparks.com/media/user/displayboardslides/EventQR.jpg",
+      "duration": 5,
+      "refresh": true
+    },
+    {
+      "url": "https://www.warrencountyparks.com/media/user/displayboardslides/OfficeSlide1.jpg",
+      "duration": 5,
+      "refresh": true
+    },
+    {
+      "url": "https://www.warrencountyparks.com/media/user/displayboardslides/GeneralParkSlide1.jpg",
+      "duration": 5,
+      "refresh": true
+    },
+    {
+      "url": "https://www.warrencountyparks.com/media/user/displayboardslides/DukeThanks.jpg",
+      "duration": 5,
+      "refresh": true
+    }
+  ]
+}
